@@ -58,7 +58,3 @@ Me apasiona resolver problemas complejos y aplicar las mejores prácticas de des
 -   **Proyectos de Alto Impacto:** Desarrollé soluciones PHP en Symfony para clientes de gran escala como **PayPal, Bimbo, Virgin y Renault**.
 
 ---
-
-## 📈 Mis Estadísticas en GitHub
-
-[![Estadísticas de GitHub de Gustavo](https://github-readme-stats.vercel.app/api?username=gushh&show_icons=true&theme=vue-dark&include_all_commits=true&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
