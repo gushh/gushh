@@ -21,9 +21,10 @@ Soy un **Desarrollador PHP especializado en Laravel** con más de 10 años de tr
 
 Me apasiona resolver problemas complejos y aplicar las mejores prácticas de desarrollo para crear soluciones eficientes y de alta calidad para clientes en toda Latinoamérica.
 
-- 👨‍💻 Liderando el diseño y la arquitectura de software a medida en **[TreceAR](https://trece.ar)**.
-- 🚀 Experiencia probada en la gestión de proyectos y liderazgo técnico de equipos multidisciplinarios.
-- 💡 Siempre buscando aplicar patrones de diseño y refactorizar para lograr un código más limpio y eficiente.
+-  Especialista en arquitecturas de software robustas y escalables.
+-  Líder técnico con experiencia en la mentoría de equipos multidisciplinarios.
+-  Fiel creyente del código limpio (Clean Code) y las buenas prácticas de desarrollo.
+
 ---
 
 ## 🛠️ Mi Stack Tecnológico
