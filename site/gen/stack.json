@@ -1,0 +1,173 @@
+[
+ {
+  "category": "BACKEND",
+  "type": "Espada",
+  "items": [
+   {
+    "name": "PHP",
+    "color": "#777BB4",
+    "sprite": "gen/items/php.svg"
+   },
+   {
+    "name": "Laravel",
+    "color": "#FF2D20",
+    "sprite": "gen/items/laravel.svg"
+   },
+   {
+    "name": "Symfony",
+    "color": "#e8e8e8",
+    "sprite": "gen/items/symfony.svg"
+   },
+   {
+    "name": "Yii Framework",
+    "color": "#40B3D8",
+    "sprite": "gen/items/yii-framework.svg"
+   },
+   {
+    "name": "CodeIgniter",
+    "color": "#EF4223",
+    "sprite": "gen/items/codeigniter.svg"
+   }
+  ]
+ },
+ {
+  "category": "BASES DE DATOS",
+  "type": "Poción",
+  "items": [
+   {
+    "name": "MySQL",
+    "color": "#4479A1",
+    "sprite": "gen/items/mysql.svg"
+   },
+   {
+    "name": "MariaDB",
+    "color": "#1b6f86",
+    "sprite": "gen/items/mariadb.svg"
+   },
+   {
+    "name": "PostgreSQL",
+    "color": "#4169E1",
+    "sprite": "gen/items/postgresql.svg"
+   },
+   {
+    "name": "MongoDB",
+    "color": "#47A248",
+    "sprite": "gen/items/mongodb.svg"
+   },
+   {
+    "name": "Redis",
+    "color": "#DC382D",
+    "sprite": "gen/items/redis.svg"
+   }
+  ]
+ },
+ {
+  "category": "FRONTEND",
+  "type": "Gema",
+  "items": [
+   {
+    "name": "Vue.js",
+    "color": "#4FC08D",
+    "sprite": "gen/items/vue-js.svg"
+   },
+   {
+    "name": "Livewire",
+    "color": "#4E56A6",
+    "sprite": "gen/items/livewire.svg"
+   },
+   {
+    "name": "Vite",
+    "color": "#B73BFE",
+    "sprite": "gen/items/vite.svg"
+   },
+   {
+    "name": "Tailwind CSS",
+    "color": "#38B2AC",
+    "sprite": "gen/items/tailwind-css.svg"
+   },
+   {
+    "name": "Bootstrap",
+    "color": "#7952B3",
+    "sprite": "gen/items/bootstrap.svg"
+   },
+   {
+    "name": "HTML5",
+    "color": "#E34F26",
+    "sprite": "gen/items/html5.svg"
+   },
+   {
+    "name": "CSS3",
+    "color": "#1572B6",
+    "sprite": "gen/items/css3.svg"
+   }
+  ]
+ },
+ {
+  "category": "DEVOPS & INFRAESTRUCTURA",
+  "type": "Escudo",
+  "items": [
+   {
+    "name": "Ubuntu",
+    "color": "#E95420",
+    "sprite": "gen/items/ubuntu.svg"
+   },
+   {
+    "name": "DigitalOcean",
+    "color": "#0080FF",
+    "sprite": "gen/items/digitalocean.svg"
+   },
+   {
+    "name": "Docker",
+    "color": "#2496ED",
+    "sprite": "gen/items/docker.svg"
+   }
+  ]
+ },
+ {
+  "category": "HERRAMIENTAS Y ENTORNOS",
+  "type": "Pico",
+  "items": [
+   {
+    "name": "VS Code",
+    "color": "#007ACC",
+    "sprite": "gen/items/vs-code.svg"
+   },
+   {
+    "name": "Jira",
+    "color": "#0052CC",
+    "sprite": "gen/items/jira.svg"
+   },
+   {
+    "name": "GitKraken",
+    "color": "#179287",
+    "sprite": "gen/items/gitkraken.svg"
+   },
+   {
+    "name": "GitHub",
+    "color": "#c9d1d9",
+    "sprite": "gen/items/github.svg"
+   }
+  ]
+ },
+ {
+  "category": "FORMACIÓN",
+  "type": "Libro",
+  "items": [
+   {
+    "name": "Laracasts",
+    "color": "#E12737",
+    "sprite": "gen/items/laracasts.svg"
+   },
+   {
+    "name": "Platzi",
+    "color": "#98CA3F",
+    "sprite": "gen/items/platzi.svg"
+   },
+   {
+    "name": "Laravel Daily",
+    "color": "#E12737",
+    "sprite": "gen/items/laravel-daily.svg"
+   }
+  ]
+ }
+]

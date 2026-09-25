@@ -109,3 +109,7 @@ Me apasiona resolver problemas complejos y aplicar las mejores prácticas de des
 <br>
 
 <a href="https://calendly.com/gushhio/30min" target="_blank"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg"><img alt="¡Gracias por jugar! ¿Continuar? Agendar reunión" src="assets/footer-light.svg" width="100%"></picture></a>
+
+<p align="center">
+  <sub>🕹️ <a href="https://gushh.github.io/gushh/"><b>Jugar la versión interactiva</b></a> · pixel art generado con <a href="art/"><code>art/build.py</code></a></sub>
+</p>

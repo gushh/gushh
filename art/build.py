@@ -843,6 +843,46 @@ def footer(theme):
     return d
 
 
+# ------------------------------------------------------ github pages data
+
+ITEM_TYPES = {"BACKEND": "Espada", "BASES DE DATOS": "Poción", "FRONTEND": "Gema",
+              "DEVOPS & INFRAESTRUCTURA": "Escudo", "HERRAMIENTAS Y ENTORNOS": "Pico",
+              "FORMACIÓN": "Libro"}
+
+
+def slug(s):
+    table = str.maketrans("ÁÉÍÓÚÑáéíóúñ", "AEIOUNaeioun")
+    out = "".join(c if c.isalnum() else "-" for c in s.translate(table).lower())
+    return "-".join(p for p in out.split("-") if p)
+
+
+def site_data():
+    """Per-item sprites + stack.json for the interactive GitHub Pages version."""
+    import json
+    gen = os.path.join(ROOT, "site", "gen")
+    os.makedirs(os.path.join(gen, "items"), exist_ok=True)
+    data = []
+    for cat, spr, items in STACK:
+        entry = {"category": cat, "type": ITEM_TYPES[cat], "items": []}
+        for it in items:
+            name, colour = it[0], it[1]
+            d = Doc(12, 12, name, scale=1)
+            d.layer().sprite(1, 1, spr, item_palette(colour, it[2] if len(it) > 2 else None))
+            fn = "%s.svg" % slug(name)
+            with open(os.path.join(gen, "items", fn), "w", encoding="utf-8") as fh:
+                fh.write(d.render())
+            entry["items"].append({"name": name, "color": colour, "sprite": "gen/items/" + fn})
+        data.append(entry)
+    with open(os.path.join(gen, "stack.json"), "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=1)
+    # a lone walking elePHPant (two frames) for the Konami-code parade
+    for f in (0, 1):
+        d = Doc(28, 19, "elePHPant", scale=1)
+        d.layer().sprite(0, 0, S.ELEPHANT[f], S.ELEPHANT_PAL)
+        with open(os.path.join(gen, "elephant-%d.svg" % f), "w", encoding="utf-8") as fh:
+            fh.write(d.render())
+
+
 # ------------------------------------------------------------------- main
 
 def main():
@@ -862,6 +902,7 @@ def main():
                                   ("liderazgo", S.FLAG, S.FLAG_PAL, "-.6s"),
                                   ("clean-code", S.BRACES, S.BRACES_PAL, "-1.2s")):
         save("perk-%s.svg" % key, perk(icon, pal, delay))
+    site_data()
     print("assets written to", OUT)
 
 

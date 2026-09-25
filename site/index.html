@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gus Fernández · Sr. PHP & Laravel Developer</title>
+  <meta name="description" content="Gus Fernández, Sr. PHP & Laravel Developer. Versión interactiva en pixel art del perfil de GitHub.">
+  <meta name="theme-color" content="#0b0a1f">
+  <meta property="og:title" content="Gus Fernández · Sr. PHP & Laravel Developer">
+  <meta property="og:description" content="Perfil en pixel art: stack, experiencia y contacto.">
+  <meta property="og:image" content="assets/hero-dark.svg">
+  <link rel="icon" href="gen/items/php.svg" type="image/svg+xml">
+  <link rel="preload" href="gen/gus-pixel.woff" as="font" type="font/woff" crossorigin>
+  <script>
+    // pick the theme before first paint so there is no flash
+    (function () {
+      var t;
+      try { t = localStorage.getItem('gus-theme'); } catch (e) {}
+      if (t !== 'dark' && t !== 'light') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <header class="hud" aria-label="Controles">
+    <a class="hud-logo" href="#top" aria-label="Volver al inicio">1UP <span>GUS</span></a>
+    <div class="hud-actions">
+      <button class="hud-btn" id="theme-toggle" type="button" aria-label="Cambiar tema">
+        <span class="i-moon" aria-hidden="true"></span><span class="i-sun" aria-hidden="true"></span>
+        <span class="lbl" data-dark="NOCHE" data-light="DÍA"></span>
+      </button>
+      <button class="hud-btn" id="sound-toggle" type="button" aria-pressed="false" aria-label="Sonido">
+        ♪ <span class="lbl">OFF</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="title-screen" id="top" aria-label="Pantalla de título">
+    <picture class="art hero">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+      <img src="assets/hero-light.svg" alt="Gus Fernández | Sr. PHP & Laravel Developer 🚀" width="840" height="396">
+    </picture>
+    <button class="start" id="start" type="button">▶ PRESIONA START</button>
+    <p class="hint">ENTER · CLIC · TAP</p>
+  </section>
+
+  <main id="main" tabindex="-1">
+    <nav class="menu" aria-label="Contacto">
+      <a href="https://trece.ar" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-web-dark.svg"><img src="assets/btn-web-light.svg" alt="Mi Sitio Web: trece.ar" width="396" height="78"></picture></a>
+      <a href="https://linkedin.com/in/gushh" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-linkedin-dark.svg"><img src="assets/btn-linkedin-light.svg" alt="LinkedIn: gushh" width="396" height="78"></picture></a>
+      <a href="mailto:gus@trece.ar"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-email-dark.svg"><img src="assets/btn-email-light.svg" alt="Email: gus@trece.ar" width="396" height="78"></picture></a>
+      <a href="https://calendly.com/gushhio/30min" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-calendly-dark.svg"><img src="assets/btn-calendly-light.svg" alt="Agendar Reunión: Calendly" width="396" height="78"></picture></a>
+    </nav>
+
+    <!-- MUNDO 1-1 -->
+    <section class="world" id="sobre-mi" aria-labelledby="h-sobre-mi">
+      <h2 id="h-sobre-mi" class="world-title">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-sobre-mi-dark.svg"><img src="assets/title-sobre-mi-light.svg" alt="Sobre Mí" width="840" height="90"></picture>
+      </h2>
+      <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/profile-dark.svg"><img src="assets/profile-light.svg" alt="Ficha de personaje — Clase: Sr. PHP & Laravel Developer · Experiencia: +10 años · Foco: arquitectura, liderazgo y rendimiento · Clientes: toda Latinoamérica" width="840" height="228"></picture>
+
+      <div class="dialog win" id="dialog">
+        <span class="dialog-name">GUS</span>
+        <div class="sr-only">
+          <p>Soy un <strong>Desarrollador PHP especializado en Laravel</strong> con más de 10 años de trayectoria construyendo software escalable y robusto. Mi carrera se ha centrado en el diseño de arquitecturas de sistemas, el liderazgo técnico de equipos y la optimización del rendimiento.</p>
+          <p>Me apasiona resolver problemas complejos y aplicar las mejores prácticas de desarrollo para crear soluciones eficientes y de alta calidad para clientes en toda Latinoamérica.</p>
+        </div>
+        <div class="dialog-text" aria-hidden="true"></div>
+        <span class="dialog-more" aria-hidden="true">▼</span>
+        <button class="dialog-skip" type="button">SALTAR ▶▶</button>
+      </div>
+
+      <ul class="perks">
+        <li class="win"><img src="assets/perk-arquitectura.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Especialista en arquitecturas de software robustas y escalables.</li>
+        <li class="win"><img src="assets/perk-liderazgo.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Líder técnico con experiencia en la mentoría de equipos multidisciplinarios.</li>
+        <li class="win"><img src="assets/perk-clean-code.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Fiel creyente del código limpio (Clean Code) y las buenas prácticas de desarrollo.</li>
+      </ul>
+    </section>
+
+    <!-- MUNDO 1-2 -->
+    <section class="world" id="stack" aria-labelledby="h-stack">
+      <h2 id="h-stack" class="world-title">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-stack-dark.svg"><img src="assets/title-stack-light.svg" alt="Mi Stack Tecnológico" width="840" height="90"></picture>
+      </h2>
+      <div class="inventory win">
+        <div class="inv-grid" id="inv-grid" role="listbox" aria-label="Inventario: elegí una tecnología"></div>
+        <aside class="inv-detail" aria-live="polite">
+          <div class="inv-sprite"><img id="inv-img" src="gen/items/php.svg" alt=""></div>
+          <p class="inv-name" id="inv-name">PHP</p>
+          <dl>
+            <dt>CATEGORÍA</dt><dd id="inv-cat">BACKEND</dd>
+            <dt>TIPO</dt><dd id="inv-type">ESPADA</dd>
+            <dt>COLOR</dt><dd><span class="swatch" id="inv-swatch"></span><span id="inv-color">#777BB4</span></dd>
+          </dl>
+          <p class="inv-count"><span id="inv-count">27</span> ÍTEMS EN EL INVENTARIO</p>
+          <p class="inv-help">← → ↑ ↓ PARA MOVERTE</p>
+        </aside>
+      </div>
+      <noscript>
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/inventory-dark.svg"><img src="assets/inventory-light.svg" alt="Inventario completo del stack" width="840"></picture>
+      </noscript>
+    </section>
+
+    <!-- MUNDO 1-3 -->
+    <section class="world" id="experiencia" aria-labelledby="h-exp">
+      <h2 id="h-exp" class="world-title">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-experiencia-dark.svg"><img src="assets/title-experiencia-light.svg" alt="Experiencia Destacada" width="840" height="90"></picture>
+      </h2>
+      <article class="achievement">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-liderazgo-dark.svg"><img src="assets/logro-liderazgo-light.svg" alt="Logro desbloqueado: Liderazgo Técnico" width="840" height="96"></picture>
+        <p>Lideré equipos de desarrollo backend, implementando metodologías de trabajo estructuradas con <em>pull requests</em>, <em>code reviews</em> y buenas prácticas en Laravel.</p>
+      </article>
+      <article class="achievement">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-arquitectura-dark.svg"><img src="assets/logro-arquitectura-light.svg" alt="Logro desbloqueado: Arquitectura de Software" width="840" height="96"></picture>
+        <p>Diseñé la arquitectura y migración completa del portal de <em>Clasificados La Voz de Córdoba</em> (de Drupal a Laravel). Implementé arquitecturas basadas en DDD con Laravel y Doctrine para plataformas fintech.</p>
+      </article>
+      <article class="achievement">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-impacto-dark.svg"><img src="assets/logro-impacto-light.svg" alt="Logro desbloqueado: Proyectos de Alto Impacto" width="840" height="96"></picture>
+        <p>Desarrollé soluciones PHP en Symfony para clientes de gran escala como <strong>PayPal, Bimbo, Virgin y Renault</strong>.</p>
+      </article>
+    </section>
+
+    <footer class="continue" id="continue">
+      <picture class="art" id="footer-art"><source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg"><img src="assets/footer-light.svg" alt="¡Gracias por jugar!" width="840" height="174"></picture>
+      <div class="win continue-box">
+        <p class="continue-q"><span id="continue-label">¿CONTINUAR?</span> <span class="countdown" id="countdown" aria-hidden="true">9</span></p>
+        <div class="continue-actions">
+          <a class="pbtn primary" href="https://calendly.com/gushhio/30min" target="_blank" rel="noopener">▶ SÍ · AGENDAR REUNIÓN</a>
+          <a class="pbtn" href="#top">↑ VOLVER AL INICIO</a>
+        </div>
+      </div>
+      <p class="credits">PIXEL ART DIBUJADO PÍXEL A PÍXEL · <a href="https://github.com/gushh/gushh">VER EN GITHUB</a></p>
+      <p class="konami-tip" aria-hidden="true">↑ ↑ ↓ ↓ ← → ← → B A</p>
+    </footer>
+  </main>
+
+  <div class="parade" id="parade" aria-hidden="true"></div>
+  <div class="popup win" id="popup" role="status" aria-live="polite"></div>
+  <div class="wipe" id="wipe" aria-hidden="true"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
