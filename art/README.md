@@ -19,7 +19,8 @@ python3 art/webfont.py    # convierte la fuente bitmap en un .woff para el sitio
 
 ## Cómo editar
 
-- **Cambiar un dato:** los textos viven en `build.py` (`BUTTONS`, `SECTIONS`, `STACK`, `ACHIEVEMENTS`).
+- **Cambiar un dato:** los textos viven en `build.py` (`BUTTONS`, `STEPS`, `SECTIONS`, `STACK`, `ACHIEVEMENTS`).
+  El email precargado del CTA "Contame tu idea" está en el `mailto:` del README (y en `site/app.js` para el formulario).
   Agregar una tecnología es sumar una tupla `("Nombre", "#color")` en `STACK`.
 - **Dibujar:** en `sprites.py` cada carácter es un píxel (`.` = transparente) y la paleta se
   resuelve al dibujar, así un mismo sprite se recolorea (cada espada toma el color de su tecnología).

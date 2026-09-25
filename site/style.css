@@ -139,14 +139,60 @@ a { color: var(--link); }
 /* ----------------------------------------------------------------- main */
 main { width: min(900px, 100% - 32px); margin: 0 auto; padding-bottom: 96px; outline: none; }
 .menu {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 12px; margin: 8px 0 72px;
 }
+.menu-main { grid-column: 1 / -1; }
 .menu a { display: block; transition: transform .12s var(--step); }
 .menu a img { width: 100%; }
 .menu a:hover, .menu a:focus-visible { transform: translate(-3px, -3px); filter: drop-shadow(6px 6px 0 rgba(0, 0, 0, .35)); }
 
 .world { margin: 0 0 80px; scroll-margin-top: 64px; }
+.lead { margin: 0 0 18px; color: var(--muted); }
+
+.hud-cta { background: var(--laravel); color: #fff; text-decoration: none; border-color: var(--ring-out); }
+.hud-cta:hover, .hud-cta:focus-visible { background: #ff5a4e; }
+
+/* the three steps */
+.steps { list-style: none; padding: 0; margin: 18px 0 28px; display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); }
+.steps li { padding: 16px 16px 18px; font-size: 16px; }
+.steps b { display: block; font: 20px/1 var(--pixel); color: var(--gold); margin-bottom: 8px; }
+
+/* level 1: the idea form */
+.quest { padding: 22px 22px 24px; scroll-margin-top: 72px; }
+.quest-head { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
+.quest-head img { width: 48px; height: 48px; animation: float 1.6s steps(2) infinite; }
+.quest-level { font: 20px/1 var(--mini); color: var(--gold); margin: 0 0 6px; letter-spacing: 0; }
+.quest h3 { font: 30px/1.1 var(--pixel); margin: 0; }
+.quest-intro { margin: 0 0 18px; color: var(--muted); }
+.field { display: grid; gap: 6px; margin: 0 0 16px; border: 0; padding: 0; }
+.field > span, .field legend { font: 20px/1 var(--mini); color: var(--dim); letter-spacing: 0; padding: 0; margin-bottom: 6px; }
+.field em { color: var(--laravel); font-style: normal; }
+.field input:not([type="radio"]), .field textarea {
+  font: 17px/1.5 var(--body); color: var(--fg); background: var(--panel);
+  border: 3px solid var(--edge); padding: 10px 12px; width: 100%; resize: vertical; border-radius: 0;
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--sel); }
+.field [aria-invalid="true"] { border-color: var(--laravel); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips legend { width: 100%; }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; inset: 0; margin: 0; }
+.chips span { display: block; font: 20px/1 var(--pixel); padding: 9px 12px 7px; border: 3px solid var(--edge); background: var(--panel); }
+.chips input:checked + span { border-color: var(--sel); color: var(--sel); box-shadow: 0 0 0 3px var(--ring-out); }
+.chips input:focus-visible + span { outline: 3px dashed var(--sel); outline-offset: 3px; }
+.xp { display: flex; align-items: center; gap: 10px; margin: -6px 0 18px; font: 20px/1 var(--mini); color: var(--dim); flex-wrap: wrap; }
+.xp-bar { flex: 1 1 160px; height: 15px; background: var(--ring-out); border: 3px solid var(--ring-out); display: block; min-width: 120px; }
+.xp-bar span { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, #ffc94d 0 9px, #e0a31a 9px 12px); transition: width .3s var(--step); }
+.xp-rank { color: var(--gold); min-width: 9em; }
+.quest-error { color: var(--laravel); font: 20px/1.2 var(--mini); margin: 0 0 12px; min-height: 1px; }
+.quest-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.quest-actions .pbtn { font-size: 20px; cursor: var(--cursor); }
+.quest-note { font-size: 14px; color: var(--dim); }
+.quest-done { margin-top: 20px; padding: 16px; border: 3px dashed var(--sel); background: var(--panel); }
+.quest-done p { margin: 0 0 8px; }
+.quest-fallback { font-size: 15px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.quest-fallback .pbtn { font-size: 20px; padding: 8px 10px 6px; }
 .world-title { margin: 0 0 16px; font-size: inherit; }
 
 /* dialogue box */
@@ -247,6 +293,9 @@ main { width: min(900px, 100% - 32px); margin: 0 auto; padding-bottom: 96px; out
 
 @media (max-width: 760px) {
   .hud { position: absolute; }
+  .hud-cta .long, .hud-logo { display: none; }
+  .menu, .steps { grid-template-columns: 1fr; }
+  .menu a:not(.menu-main) { justify-self: center; width: min(100%, 264px); }
   .inventory { grid-template-columns: 1fr; }
   .inv-detail { position: static; order: -1; display: grid; grid-template-columns: 96px 1fr; gap: 0 14px; }
   .inv-sprite { grid-row: span 4; margin: 0; }

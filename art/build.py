@@ -1014,6 +1014,10 @@ def site_data():
         data.append(entry)
     with open(os.path.join(gen, "stack.json"), "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=1)
+    d = Doc(16, 16, "idea", scale=1)
+    d.layer().sprite(0, 0, S.BULB, S.BULB_PAL)
+    with open(os.path.join(gen, "bulb.svg"), "w", encoding="utf-8") as fh:
+        fh.write(d.render())
     # a lone walking elePHPant (two frames) for the Konami-code parade
     for f in (0, 1):
         d = Doc(28, 19, "elePHPant", scale=1)

@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gus Fernández · Sr. PHP & Laravel Developer</title>
-  <meta name="description" content="Gus Fernández, Sr. PHP & Laravel Developer. Versión interactiva en pixel art del perfil de GitHub.">
+  <meta name="description" content="Gus Fernández, Sr. PHP & Laravel Developer. Contame tu idea: te envío un presupuesto y la hacemos realidad.">
   <meta name="theme-color" content="#0b0a1f">
   <meta property="og:title" content="Gus Fernández · Sr. PHP & Laravel Developer">
-  <meta property="og:description" content="Perfil en pixel art: stack, experiencia y contacto.">
+  <meta property="og:description" content="¿Tenés una idea? Contámela: te envío un presupuesto y la hacemos realidad.">
   <meta property="og:image" content="assets/hero-dark.svg">
   <link rel="icon" href="gen/items/php.svg" type="image/svg+xml">
   <link rel="preload" href="gen/gus-pixel.woff" as="font" type="font/woff" crossorigin>
@@ -28,6 +28,7 @@
   <header class="hud" aria-label="Controles">
     <a class="hud-logo" href="#top" aria-label="Volver al inicio">1UP <span>GUS</span></a>
     <div class="hud-actions">
+      <a class="hud-btn hud-cta" href="#idea">▶ <span class="long">CONTAME TU </span>IDEA</a>
       <button class="hud-btn" id="theme-toggle" type="button" aria-label="Cambiar tema">
         <span class="i-moon" aria-hidden="true"></span><span class="i-sun" aria-hidden="true"></span>
         <span class="lbl" data-dark="NOCHE" data-light="DÍA"></span>
@@ -43,19 +44,102 @@
       <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
       <img src="assets/hero-light.svg" alt="Gus Fernández | Sr. PHP & Laravel Developer 🚀" width="840" height="396">
     </picture>
-    <button class="start" id="start" type="button">▶ PRESIONA START</button>
+    <button class="start" id="start" type="button">▶ INSERTÁ TU IDEA</button>
     <p class="hint">ENTER · CLIC · TAP</p>
   </section>
 
   <main id="main" tabindex="-1">
     <nav class="menu" aria-label="Contacto">
-      <a href="https://trece.ar" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-web-dark.svg"><img src="assets/btn-web-light.svg" alt="Mi Sitio Web: trece.ar" width="396" height="78"></picture></a>
-      <a href="https://linkedin.com/in/gushh" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-linkedin-dark.svg"><img src="assets/btn-linkedin-light.svg" alt="LinkedIn: gushh" width="396" height="78"></picture></a>
-      <a href="mailto:gus@trece.ar"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-email-dark.svg"><img src="assets/btn-email-light.svg" alt="Email: gus@trece.ar" width="396" height="78"></picture></a>
-      <a href="https://calendly.com/gushhio/30min" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-calendly-dark.svg"><img src="assets/btn-calendly-light.svg" alt="Agendar Reunión: Calendly" width="396" height="78"></picture></a>
+      <a class="menu-main" href="#idea"><img src="assets/btn-idea.svg" alt="Contame tu idea y te respondo con un presupuesto" width="840" height="120"></a>
+      <a href="https://trece.ar" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-web-dark.svg"><img src="assets/btn-web-light.svg" alt="Sitio web: trece.ar" width="264" height="78"></picture></a>
+      <a href="https://linkedin.com/in/gushh" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-linkedin-dark.svg"><img src="assets/btn-linkedin-light.svg" alt="LinkedIn: gushh" width="264" height="78"></picture></a>
+      <a href="https://calendly.com/gushhio/30min" target="_blank" rel="noopener"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-calendly-dark.svg"><img src="assets/btn-calendly-light.svg" alt="Reunión: Calendly" width="264" height="78"></picture></a>
     </nav>
 
-    <!-- MUNDO 1-1 -->
+    <!-- MUNDO 1-1: el camino + el formulario -->
+    <section class="world" id="camino" aria-labelledby="h-camino">
+      <h2 id="h-camino" class="world-title"><picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-camino-dark.svg"><img src="assets/title-camino-light.svg" alt="De la idea a la realidad" width="840" height="90"></picture></h2>
+      <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/camino-dark.svg"><img src="assets/camino-light.svg" alt="El camino: 1. Idea, me la contás → 2. Presupuesto, te lo envío → 3. Concreción, la hacemos realidad" width="840" height="192"></picture>
+      <ol class="steps">
+        <li class="win"><b>1 · IDEA</b>Contame qué querés construir: un producto, una plataforma, una herramienta para tu equipo. No hace falta que sea técnica: si vos la entendés, alcanza.</li>
+        <li class="win"><b>2 · PRESUPUESTO</b>Analizo tu idea, te hago las preguntas que hagan falta y te envío un presupuesto claro, con alcance y etapas.</li>
+        <li class="win"><b>3 · CONCRECIÓN</b>Diseño la arquitectura, desarrollo y lanzamos. Tu idea funcionando y lista para crecer.</li>
+      </ol>
+
+      <form class="quest win" id="idea" aria-labelledby="h-idea" novalidate>
+        <div class="quest-head">
+          <img src="gen/bulb.svg" alt="" width="48" height="48">
+          <div>
+            <p class="quest-level">NIVEL 1 DE 3</p>
+            <h3 id="h-idea">CONTAME TU IDEA</h3>
+          </div>
+        </div>
+        <p class="quest-intro">Completá esto y se abre tu correo con todo listo para enviarme. Te respondo con un presupuesto.</p>
+
+        <label class="field">
+          <span>TU NOMBRE</span>
+          <input name="nombre" autocomplete="name" placeholder="¿Cómo te llamás?">
+        </label>
+
+        <label class="field">
+          <span>TU IDEA <em>*</em></span>
+          <textarea name="idea" rows="5" required placeholder="Ej: una plataforma para que mis clientes reserven turnos y paguen online…"></textarea>
+        </label>
+        <div class="xp" aria-live="polite">
+          <span class="xp-label">NIVEL DE DETALLE</span>
+          <span class="xp-bar"><span id="xp-fill"></span></span>
+          <span class="xp-rank" id="xp-rank">SIN EMPEZAR</span>
+        </div>
+
+        <label class="field">
+          <span>¿PARA QUIÉN ES?</span>
+          <input name="para" placeholder="Tu empresa, tus clientes, tu equipo…">
+        </label>
+
+        <fieldset class="field chips">
+          <legend>¿PARA CUÁNDO?</legend>
+          <label><input type="radio" name="plazo" value="Lo antes posible"><span>LO ANTES POSIBLE</span></label>
+          <label><input type="radio" name="plazo" value="En 1 a 3 meses"><span>1 A 3 MESES</span></label>
+          <label><input type="radio" name="plazo" value="En 3 a 6 meses"><span>3 A 6 MESES</span></label>
+          <label><input type="radio" name="plazo" value="Sin apuro, estoy explorando"><span>SIN APURO</span></label>
+        </fieldset>
+
+        <p class="quest-error" id="quest-error" role="alert"></p>
+        <div class="quest-actions">
+          <button class="pbtn primary" type="submit">▶ ENVIAR IDEA</button>
+          <span class="quest-note">Se guarda como borrador en este navegador mientras escribís.</span>
+        </div>
+
+        <div class="quest-done" id="quest-done" hidden>
+          <p class="quest-level">★ NIVEL 1 COMPLETADO ★</p>
+          <p>Se abrió tu correo con la idea lista: solo falta que la envíes. <b>Próximo nivel: presupuesto.</b></p>
+          <p class="quest-fallback">¿No se abrió? Copiá tu idea y mandala a <a href="mailto:gus@trece.ar">gus@trece.ar</a>.
+            <button class="pbtn" type="button" id="copy-idea">COPIAR IDEA</button></p>
+        </div>
+      </form>
+    </section>
+
+    <!-- MUNDO 1-2 -->
+    <section class="world" id="experiencia" aria-labelledby="h-exp">
+      <h2 id="h-exp" class="world-title">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-logros-dark.svg"><img src="assets/title-logros-light.svg" alt="Logros desbloqueados" width="840" height="90"></picture>
+      </h2>
+      <p class="lead">Más de 10 años convirtiendo ideas en software. Algunos logros del camino:</p>
+      <article class="achievement">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-liderazgo-dark.svg"><img src="assets/logro-liderazgo-light.svg" alt="Logro desbloqueado: Liderazgo Técnico" width="840" height="96"></picture>
+        <p>Lideré equipos de desarrollo backend, implementando metodologías de trabajo estructuradas con <em>pull requests</em>, <em>code reviews</em> y buenas prácticas en Laravel.</p>
+      </article>
+      <article class="achievement">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-arquitectura-dark.svg"><img src="assets/logro-arquitectura-light.svg" alt="Logro desbloqueado: Arquitectura de Software" width="840" height="96"></picture>
+        <p>Diseñé la arquitectura y migración completa del portal de <em>Clasificados La Voz de Córdoba</em> (de Drupal a Laravel). Implementé arquitecturas basadas en DDD con Laravel y Doctrine para plataformas fintech.</p>
+      </article>
+      <article class="achievement">
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-impacto-dark.svg"><img src="assets/logro-impacto-light.svg" alt="Logro desbloqueado: Proyectos de Alto Impacto" width="840" height="96"></picture>
+        <p>Desarrollé soluciones PHP en Symfony para clientes de gran escala como <strong>PayPal, Bimbo, Virgin y Renault</strong>.</p>
+      </article>
+    </section>
+
+    <!-- MUNDO 1-3 -->
     <section class="world" id="sobre-mi" aria-labelledby="h-sobre-mi">
       <h2 id="h-sobre-mi" class="world-title">
         <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-sobre-mi-dark.svg"><img src="assets/title-sobre-mi-light.svg" alt="Sobre Mí" width="840" height="90"></picture>
@@ -65,8 +149,8 @@
       <div class="dialog win" id="dialog">
         <span class="dialog-name">GUS</span>
         <div class="sr-only">
-          <p>Soy un <strong>Desarrollador PHP especializado en Laravel</strong> con más de 10 años de trayectoria construyendo software escalable y robusto. Mi carrera se ha centrado en el diseño de arquitecturas de sistemas, el liderazgo técnico de equipos y la optimización del rendimiento.</p>
-          <p>Me apasiona resolver problemas complejos y aplicar las mejores prácticas de desarrollo para crear soluciones eficientes y de alta calidad para clientes en toda Latinoamérica.</p>
+          <p>Soy <strong>Gus</strong>, desarrollador <strong>PHP especializado en Laravel</strong> con más de 10 años de trayectoria convirtiendo ideas en software escalable y robusto. Mi carrera se centró en el diseño de arquitecturas de sistemas, el liderazgo técnico de equipos y la optimización del rendimiento: justo lo que necesita una idea para convertirse en un producto que funcione y crezca.</p>
+          <p>Me apasiona resolver problemas complejos. Trabajo con clientes de toda Latinoamérica y el proceso es simple: me contás tu idea, te envío un presupuesto y la hacemos realidad.</p>
         </div>
         <div class="dialog-text" aria-hidden="true"></div>
         <span class="dialog-more" aria-hidden="true">▼</span>
@@ -74,16 +158,16 @@
       </div>
 
       <ul class="perks">
-        <li class="win"><img src="assets/perk-arquitectura.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Especialista en arquitecturas de software robustas y escalables.</li>
-        <li class="win"><img src="assets/perk-liderazgo.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Líder técnico con experiencia en la mentoría de equipos multidisciplinarios.</li>
-        <li class="win"><img src="assets/perk-clean-code.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Fiel creyente del código limpio (Clean Code) y las buenas prácticas de desarrollo.</li>
+        <li class="win"><img src="assets/perk-arquitectura.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Arquitecturas robustas y escalables: tu idea arranca sobre bases sólidas, preparada para crecer.</li>
+        <li class="win"><img src="assets/perk-liderazgo.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Liderazgo técnico y mentoría de equipos multidisciplinarios: el proyecto avanza ordenado.</li>
+        <li class="win"><img src="assets/perk-clean-code.svg" alt="" width="60" height="60"><b>HABILIDAD PASIVA</b>Código limpio (Clean Code) y buenas prácticas: software fácil de mantener y hacer evolucionar.</li>
       </ul>
     </section>
 
-    <!-- MUNDO 1-2 -->
+    <!-- MUNDO 1-4 -->
     <section class="world" id="stack" aria-labelledby="h-stack">
       <h2 id="h-stack" class="world-title">
-        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-stack-dark.svg"><img src="assets/title-stack-light.svg" alt="Mi Stack Tecnológico" width="840" height="90"></picture>
+        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-stack-dark.svg"><img src="assets/title-stack-light.svg" alt="Con qué la construyo" width="840" height="90"></picture>
       </h2>
       <div class="inventory win">
         <div class="inv-grid" id="inv-grid" role="listbox" aria-label="Inventario: elegí una tecnología"></div>
@@ -104,31 +188,12 @@
       </noscript>
     </section>
 
-    <!-- MUNDO 1-3 -->
-    <section class="world" id="experiencia" aria-labelledby="h-exp">
-      <h2 id="h-exp" class="world-title">
-        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/title-experiencia-dark.svg"><img src="assets/title-experiencia-light.svg" alt="Experiencia Destacada" width="840" height="90"></picture>
-      </h2>
-      <article class="achievement">
-        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-liderazgo-dark.svg"><img src="assets/logro-liderazgo-light.svg" alt="Logro desbloqueado: Liderazgo Técnico" width="840" height="96"></picture>
-        <p>Lideré equipos de desarrollo backend, implementando metodologías de trabajo estructuradas con <em>pull requests</em>, <em>code reviews</em> y buenas prácticas en Laravel.</p>
-      </article>
-      <article class="achievement">
-        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-arquitectura-dark.svg"><img src="assets/logro-arquitectura-light.svg" alt="Logro desbloqueado: Arquitectura de Software" width="840" height="96"></picture>
-        <p>Diseñé la arquitectura y migración completa del portal de <em>Clasificados La Voz de Córdoba</em> (de Drupal a Laravel). Implementé arquitecturas basadas en DDD con Laravel y Doctrine para plataformas fintech.</p>
-      </article>
-      <article class="achievement">
-        <picture class="art"><source media="(prefers-color-scheme: dark)" srcset="assets/logro-impacto-dark.svg"><img src="assets/logro-impacto-light.svg" alt="Logro desbloqueado: Proyectos de Alto Impacto" width="840" height="96"></picture>
-        <p>Desarrollé soluciones PHP en Symfony para clientes de gran escala como <strong>PayPal, Bimbo, Virgin y Renault</strong>.</p>
-      </article>
-    </section>
-
     <footer class="continue" id="continue">
-      <picture class="art" id="footer-art"><source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg"><img src="assets/footer-light.svg" alt="¡Gracias por jugar!" width="840" height="174"></picture>
+      <picture class="art" id="footer-art"><source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg"><img src="assets/footer-light.svg" alt="¿Tenés una idea? Insertá tu idea para continuar" width="840" height="198"></picture>
       <div class="win continue-box">
         <p class="continue-q"><span id="continue-label">¿CONTINUAR?</span> <span class="countdown" id="countdown" aria-hidden="true">9</span></p>
         <div class="continue-actions">
-          <a class="pbtn primary" href="https://calendly.com/gushhio/30min" target="_blank" rel="noopener">▶ SÍ · AGENDAR REUNIÓN</a>
+          <a class="pbtn primary" href="#idea">▶ SÍ · CONTAME TU IDEA</a>
           <a class="pbtn" href="#top">↑ VOLVER AL INICIO</a>
         </div>
       </div>

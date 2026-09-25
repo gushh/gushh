@@ -73,10 +73,14 @@
   applyTheme(root.dataset.theme);
 
   /* ------------------------------------------------------------ start */
+  // "Insertá tu idea": jump straight to level 1, the idea form
   const wipe = $('#wipe');
   function start() {
     sfx('coin');
-    const go = () => { $('#main').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); $('#main').focus({ preventScroll: true }); };
+    const go = () => {
+      $('#idea').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+      setTimeout(() => $('#idea textarea').focus({ preventScroll: true }), reduced ? 0 : 500);
+    };
     if (reduced) return go();
     wipe.classList.remove('go');
     void wipe.offsetWidth;
@@ -86,6 +90,72 @@
   $('#start').addEventListener('click', start);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && window.scrollY < innerHeight * 0.5 && document.activeElement === document.body) start();
+  });
+
+  /* ------------------------------------------------ level 1: the idea */
+  const form = $('#idea');
+  const fields = { nombre: form.elements.nombre, idea: form.elements.idea, para: form.elements.para };
+  const fill = $('#xp-fill');
+  const rank = $('#xp-rank');
+  const RANKS = [[0, 'SIN EMPEZAR'], [1, 'CHISPA'], [80, 'BOCETO'], [180, 'BUENA IDEA'], [320, '¡LEGENDARIA!']];
+  let lastRank = '';
+  function draft() {
+    return {
+      nombre: fields.nombre.value, idea: fields.idea.value, para: fields.para.value,
+      plazo: (form.querySelector('input[name="plazo"]:checked') || {}).value || '',
+    };
+  }
+  function paintXP() {
+    const n = fields.idea.value.trim().length + (fields.para.value.trim() ? 40 : 0) + (draft().plazo ? 30 : 0);
+    fill.style.width = Math.min(100, (n / 320) * 100) + '%';
+    const r = RANKS.filter(([min]) => n >= min).pop()[1];
+    if (r !== lastRank) {
+      if (lastRank && n > 0) sfx('move');
+      lastRank = r;
+      rank.textContent = r;
+    }
+  }
+  function save() { store.set('gus-idea-draft', JSON.stringify(draft())); }
+  try {
+    const d = JSON.parse(store.get('gus-idea-draft') || '{}');
+    ['nombre', 'idea', 'para'].forEach((k) => { if (d[k]) fields[k].value = d[k]; });
+    if (d.plazo) { const r = form.querySelector(`input[name="plazo"][value="${CSS.escape(d.plazo)}"]`); if (r) r.checked = true; }
+  } catch (e) { /* ignore a broken draft */ }
+  form.addEventListener('input', () => { paintXP(); save(); fields.idea.removeAttribute('aria-invalid'); $('#quest-error').textContent = ''; });
+  paintXP();
+
+  function brief() {
+    const d = draft();
+    const lines = ['¡Hola Gus!', '', '💡 Mi idea:', d.idea.trim(), ''];
+    if (d.para.trim()) lines.push('👥 Para quién es:', d.para.trim(), '');
+    if (d.plazo) lines.push('📅 Para cuándo:', d.plazo, '');
+    lines.push(d.nombre.trim() ? '¡Gracias! ' + d.nombre.trim() : '¡Gracias!');
+    return lines.join('\n');
+  }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!fields.idea.value.trim()) {
+      fields.idea.setAttribute('aria-invalid', 'true');
+      $('#quest-error').textContent = '¡FALTA LA IDEA! CONTAME AUNQUE SEA EN UNA LÍNEA.';
+      fields.idea.focus();
+      sfx('move');
+      return;
+    }
+    const name = fields.nombre.value.trim();
+    const subject = 'Tengo una idea 💡' + (name ? ' — ' + name : '');
+    location.href = 'mailto:gus@trece.ar?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(brief());
+    $('#quest-done').hidden = false;
+    sfx('achievement');
+    popup('NIVEL 1 COMPLETADO', 'PRÓXIMO: PRESUPUESTO');
+  });
+  $('#copy-idea').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const text = 'Para: gus@trece.ar\n\n' + brief();
+    try { await navigator.clipboard.writeText(text); btn.textContent = '¡COPIADA!'; } catch (err) {
+      fields.idea.select();
+      btn.textContent = 'COPIALA A MANO';
+    }
+    sfx('select');
   });
 
   /* --------------------------------------------------------- dialogue */
@@ -217,7 +287,7 @@
         clearInterval(timer);
         label.textContent = 'GAME OVER';
         cd.textContent = '';
-        setTimeout(() => { label.textContent = '¡GRACIAS POR JUGAR!'; }, 2200);
+        setTimeout(() => { label.textContent = 'LAS BUENAS IDEAS NO TIENEN GAME OVER'; }, 2200);
       }
     }, 1000);
   }, 0.6);

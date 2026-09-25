@@ -94,6 +94,9 @@ def build(font_key, family, out):
     fb.setupOS2(sTypoAscender=asc, sTypoDescender=desc, sTypoLineGap=0,
                 usWinAscent=asc, usWinDescent=-desc, sxHeight=5 * PX, sCapHeight=cap * PX)
     fb.setupPost()
+    # fixed timestamps keep the output byte-identical between runs
+    fb.font["head"].created = fb.font["head"].modified = 3900000000
+    fb.font.recalcTimestamp = False
     fb.font.flavor = "woff"
     fb.save(out)
     return out
