@@ -510,3 +510,100 @@ MUG = [
     "oooo..",
 ]
 MUG_PAL = {"o": "#16142b", "w": "#ff2d20", "s": "#cfd6e4"}
+
+# ------------------------------------------------------- idea → concreción
+BULB = [
+    "......oooo......",
+    "....ooyyyyoo....",
+    "...oyYYyyyyyo...",
+    "..oyYwYyyyyydo..",
+    "..oyYYyyyyyydo..",
+    "..oyyyyyyyyydo..",
+    "..oyyyyyyyyydo..",
+    "...oyyyyyyydo...",
+    "....oyyyyydo....",
+    ".....oyyydo.....",
+    ".....oggggo.....",
+    ".....oGGGGo.....",
+    ".....oggggo.....",
+    ".....oGGGGo.....",
+    "......oooo......",
+]
+BULB_PAL = {"o": "#16142b", "y": "#ffd84d", "Y": "#fff4b0", "d": "#e0a31a",
+            "w": "#ffffff", "g": "#b8c2d0", "G": "#6f7b8e"}
+BULB_OFF_PAL = {"o": "#16142b", "y": "#8a8fb0", "Y": "#b3b8d4", "d": "#6b7094",
+                "w": "#d8dcef", "g": "#b8c2d0", "G": "#6f7b8e"}
+BULB_RAYS = [
+    "o.......o.......o"[:16],
+    ".o......o......o.",
+    "................",
+    "o..............o",
+]
+
+BULB_MID = [
+    "..ooooo..",
+    ".oyYyyyo.",
+    "oyYwYyyyo",
+    "oyYYyyydo",
+    "oyyyyyydo",
+    "oyyyyyydo",
+    ".oyyyydo.",
+    "..oyydo..",
+    "..ogggo..",
+    "..oGGGo..",
+    "..ogggo..",
+    "...ooo...",
+]
+
+BULB_SMALL = [
+    ".ooo.",
+    "oyYyo",
+    "oYyyo",
+    "oyyyo",
+    ".oyo.",
+    ".ogo.",
+    ".oGo.",
+    "..o..",
+]
+
+BUDGET = [
+    "oooooooooooo....",
+    "oppppppppppo....",
+    "opqqqqqqqqpo....",
+    "oppppppppppo....",
+    "opqqqqqqpppo....",
+    "oppppppppppo....",
+    "opqqqqqqqqpo....",
+    "oppppppppppo....",
+    "opqqqqpp..oooo..",
+    "opppppp..ohhggo.",
+    "opqqqqp.ohhgoGGo",
+    "opppppp.ohggoGGo",
+    "opppppp.ohggoGGo",
+    "oPPPPPP.ohggoGGo",
+    "ooooooo..oggGGo.",
+    "..........oooo..",
+]
+BUDGET_PAL = {"o": "#16142b", "p": "#f3e3b5", "P": "#d9c48f", "q": "#9a8a6a",
+              "h": "#fff4c2", "g": "#f2c14e", "G": "#c98a1f"}
+
+ROCKET16 = [
+    ".......oo.......",
+    "......owwo......",
+    ".....owwwwo.....",
+    ".....owbbwo.....",
+    ".....owbbwo.....",
+    ".....owwwwo.....",
+    ".....owwwwo.....",
+    "....orwwwwro....",
+    "...orrwwwwrro...",
+    "..orrrwwwwrrro..",
+    "..orroowwoorro..",
+    "..ooo.orro.ooo..",
+    "......oooo......",
+]
+ROCKET16_PAL = {"o": "#16142b", "w": "#e8eef5", "b": "#4fc3f7", "r": "#ff2d20"}
+ROCKET16_FLAME = [
+    [".......yy.......", "......yffy......", ".......ff.......", "........y......."],
+    [".......yy.......", ".......yfy......", "......yff.......", ".......y........"],
+]

@@ -498,6 +498,23 @@ def hero(theme):
     ch.set(cx0 + 2, 130, "#454b6b")
     ch.set(cx0 + 17, 130, "#454b6b")
 
+    # the idea: a thought bubble with a bulb pops up next to the monitor
+    bub = [d.layer("th%d" % i) for i in range(3)]
+    bub[0].sprite(149, 93, [".o.", "owo", ".o."], {"o": INK, "w": "#ffffff"})
+    bub[1].sprite(155, 86, [".oo.", "owwo", "owwo", ".oo."], {"o": INK, "w": "#ffffff"})
+    bx, by, bw, bh = 165, 69, 17, 17
+    B = bub[2]
+    B.rect(bx + 1, by, bw - 2, bh, INK)
+    B.rect(bx, by + 1, bw, bh - 2, INK)
+    B.rect(bx + 1, by + 1, bw - 2, bh - 2, "#ffffff")
+    B.hline(bx + 2, by + bh - 2, bw - 4, "#d7dcef")
+    B.sprite(bx + 4, by + 2, S.BULB_MID, S.BULB_PAL)
+    for dx, dy in ((2, 3), (14, 3), (2, 10), (14, 10)):
+        B.set(bx + dx, by + dy, "#ffd84d")
+    for i, (a0, a1) in enumerate(((40, 93), (44, 93), (48, 93))):
+        css.append(".th%d{animation:th%d 7s steps(1) infinite;opacity:0}@keyframes th%d{0%%,%d%%{opacity:0}%d%%,%d%%{opacity:1}%d%%,100%%{opacity:0}}"
+                   % (i, i, i, a0 - 1, a0, a1, a1 + 1))
+
     # -- elePHPant --------------------------------------------------------
     ex, ey = 200, 111
     e = d.layer("ele")
@@ -517,10 +534,9 @@ def hero(theme):
 # --------------------------------------------------------------- buttons
 
 BUTTONS = [
-    ("web", "MI SITIO WEB", "trece.ar", "#1e88e5", S.GLOBE),
+    ("web", "SITIO WEB", "trece.ar", "#1e88e5", S.GLOBE),
     ("linkedin", "LINKEDIN", "gushh", "#0a66c2", S.INBOX),
-    ("email", "EMAIL", "gus@trece.ar", "#e0443a", S.MAIL),
-    ("calendly", "AGENDAR REUNIÓN", "Calendly", "#2ea44f", S.CAL),
+    ("calendly", "REUNIÓN", "Calendly", "#2ea44f", S.CAL),
 ]
 
 
@@ -533,29 +549,151 @@ def badge(L, x, y, size, colour):
     L.hline(x + 2, y + size - 2, size - 4, darken(colour, .3))
 
 
-def button(theme, label, value, colour, icon, selected):
+def button(theme, label, value, colour, icon):
     t = THEMES[theme]
-    w, h = 132, 26
+    w, h = 88, 26
     d = Doc(w, h, "%s: %s" % (label.title(), value))
     L = d.layer()
     window(L, 0, 0, w, h, t)
-    badge(L, 7, 5, 16, colour)
-    L.sprite(9, 7, icon, {"o": colour, "w": "#ffffff"})
-    draw_text(L, 28, 6, label, t["dim"], "small")
-    draw_text(L, 28, 13, value, t["text"], "big")
-    arrow = d.layer("sel" if selected else None)
-    draw_text(arrow, w - 13, 10, "▶", t["cursor"] if selected else t["faint"], "big")
-    if selected:
-        d.style(".sel{animation:nudge .8s steps(1) infinite}@keyframes nudge{50%{transform:translateX(2px)}}")
+    badge(L, 6, 5, 16, colour)
+    L.sprite(8, 7, icon, {"o": colour, "w": "#ffffff"})
+    draw_text(L, 27, 6, label, t["dim"], "small")
+    draw_text(L, 27, 13, value, t["text"], "big")
+    draw_text(L, w - 12, 10, "▶", t["faint"], "big")
+    return d
+
+
+def idea_button():
+    """The main call to action: a chunky arcade button."""
+    w, h = W, 40
+    d = Doc(w, h, "Contame tu idea",
+            "Botón: contame tu idea por email a gus@trece.ar y te respondo con un presupuesto.")
+    L = d.layer()
+    red, hi, sh, deep = LARAVEL, "#ff8177", "#d9241a", "#8d130c"
+    L.rect(2, 0, w - 4, h, INK)
+    L.rect(0, 2, w, h - 4, INK)
+    L.rect(1, 1, w - 2, h - 2, INK)
+    L.rect(2, 2, w - 4, h - 4, deep)
+    L.rect(2, 2, w - 4, h - 9, red)
+    L.hline(3, 2, w - 6, hi)
+    L.vline(2, 3, h - 12, hi)
+    L.hline(3, h - 8, w - 6, sh)
+    for x in range(8, w - 8, 12):
+        L.set(x, h - 5, "#a8180f")
+    # bulb, always on, with blinking rays
+    L.sprite(12, 9, S.BULB, S.BULB_PAL)
+    rays = d.layer("rays")
+    for (x, y) in ((9, 9), (8, 14), (9, 19), (29, 9), (30, 14), (29, 19), (19, 5)):
+        rays.rect(x, y, 2 if y != 5 else 2, 2 if y == 5 else 1, "#fff4b0")
+    d.style(".rays{animation:rays 1s steps(1) infinite}@keyframes rays{50%{opacity:0}}")
+    title = "CONTAME TU IDEA"
+    for (px, py) in text_mask(title, "big", 2, 38, 7):
+        L.set(px, py + 2, deep)
+    draw_text(L, 38, 7, title, "#ffffff", "big", 2)
+    draw_text(L, 38, 26, "Y TE RESPONDO CON UN PRESUPUESTO · GUS@TRECE.AR", "#ffe0dc", "small")
+    arrow = d.layer("go")
+    for (px, py) in text_mask("▶", "big", 2, w - 26, 9):
+        arrow.set(px, py + 2, deep)
+    draw_text(arrow, w - 26, 9, "▶", "#ffffff", "big", 2)
+    d.style(".go{animation:go .8s steps(1) infinite}@keyframes go{50%{transform:translateX(3px)}}")
+    # shine sweep so it reads as "press me"
+    d.raw('<clipPath id="c"><rect x="2" y="2" width="%d" height="%d"/></clipPath><g clip-path="url(#c)">' % (w - 4, h - 9))
+    shine = d.layer("shine")
+    for k in (0, 1, 2, 5):
+        for y in range(2, h - 7):
+            shine.set(10 + k - (y - 2) // 2, y, "#ffffff40")
+    d.raw("</g>")
+    d.style(".shine{animation:shine 4s steps(40) infinite 1s}"
+            "@keyframes shine{0%{transform:translateX(-30px)}35%,100%{transform:translateX(300px)}}")
+    return d
+
+
+# ------------------------------------------------------------------- path
+
+STEPS = [
+    ("IDEA", "ME LA CONTÁS", S.BULB, S.BULB_PAL, "#3d2f7a"),
+    ("PRESUPUESTO", "TE LO ENVÍO", S.BUDGET, S.BUDGET_PAL, PHP),
+    ("CONCRECIÓN", "LA HACEMOS REALIDAD", S.ROCKET16, S.ROCKET16_PAL, LARAVEL),
+]
+
+
+def camino(theme):
+    """World map: idea → presupuesto → concreción, lit up step by step."""
+    t = THEMES[theme]
+    w, h = W, 64
+    d = Doc(w, h, "El camino: idea → presupuesto → concreción",
+            "1. Idea: me la contás. 2. Presupuesto: te lo envío. 3. Concreción: la hacemos realidad.")
+    L = d.layer()
+    window(L, 0, 0, w, h, t)
+    css = []
+    cxs = [48, 140, 232]
+    by = 8
+
+    def appear(cls, start, dur=8):
+        css.append(".%s{animation:%s %ds infinite;opacity:0}@keyframes %s{0%%,%.1f%%{opacity:0}"
+                   "%.1f%%,95%%{opacity:1}95.1%%,100%%{opacity:0}}" % (cls, cls, dur, cls, start, start + .1))
+
+    starts = [1, 38, 74]
+    for i, (cx, (name, caption, icon, pal, colour)) in enumerate(zip(cxs, STEPS)):
+        x0 = cx - 12
+        badge(L, x0, by, 24, colour)
+        iw, ih = max(len(r) for r in icon), len(icon)
+        L.sprite(x0 + (24 - iw) // 2, by + (24 - ih) // 2 + (1 if icon is S.BULB else 0), icon, pal)
+        # level number tag
+        L.rect(x0 - 3, by - 3, 9, 9, INK)
+        L.rect(x0 - 2, by - 2, 7, 7, t["gold"] if theme == "dark" else "#e0a31a")
+        draw_text(L, x0, by - 1, str(i + 1), INK, "small")
+        nw = text_width(name, "big")
+        draw_text(L, cx - nw // 2, by + 29, name, t["text"], "big")
+        cw = text_width(caption, "small")
+        draw_text(L, cx - cw // 2, by + 41, caption, t["dim"], "small")
+        # glowing frame when the step is reached
+        ring = d.layer("n%d" % i)
+        for yy in range(by - 2, by + 26):
+            for xx in range(x0 - 2, x0 + 26):
+                edge = xx in (x0 - 2, x0 + 25) or yy in (by - 2, by + 25)
+                corner = xx in (x0 - 2, x0 + 25) and yy in (by - 2, by + 25)
+                if edge and not corner:
+                    ring.set(xx, yy, t["cursor"])
+        appear("n%d" % i, starts[i])
+    # dotted path between the steps
+    for s in range(2):
+        xa, xb = cxs[s] + 17, cxs[s + 1] - 21
+        dots = list(range(xa, xb, 4))
+        t0, t1 = starts[s] + 3, starts[s + 1] - 3
+        for k, x in enumerate(dots):
+            L.rect(x, by + 11, 2, 2, t["faint"])
+            lay = d.layer("p%d_%d" % (s, k))
+            lay.rect(x, by + 11, 2, 2, t["cursor"])
+            appear("p%d_%d" % (s, k), t0 + (t1 - t0) * k / len(dots))
+        draw_text(L, xb + 1, by + 10, "▶", t["faint"], "small")
+        lit = d.layer("a%d" % s)
+        draw_text(lit, xb + 1, by + 10, "▶", t["cursor"], "small")
+        appear("a%d" % s, t1)
+    # rocket ignition + sparkles on the last step
+    for f in (0, 1):
+        fl = d.layer("rf%d" % f)
+        fl.sprite(cxs[2] - 8, by + 24, S.ROCKET16_FLAME[f], {"y": "#ffd166", "f": "#ff7a3d"})
+        css.append(".rf%d{animation:rf 8s infinite,fl .2s steps(1) infinite %s;opacity:0}"
+                   % (f, "-.1s" if f else "0s"))
+    css.append("@keyframes rf{0%,74%{opacity:0}74.1%,95%{opacity:1}95.1%,100%{opacity:0}}"
+               "@keyframes fl{50%{visibility:hidden}}")
+    for k, (sx, sy) in enumerate(((cxs[2] - 18, by + 2), (cxs[2] + 17, by + 6), (cxs[2] + 14, by - 3))):
+        sp = d.layer("s%d" % k)
+        sparkle(sp, sx, sy, "#fff4c2", big=True)
+        css.append(".s%d{animation:s%d 8s steps(1) infinite;opacity:0}@keyframes s%d{0%%,%d%%{opacity:0}"
+                   "%d%%,%d%%{opacity:1}%d%%,100%%{opacity:0}}" % (k, k, k, 76 + k * 3, 77 + k * 3, 83 + k * 3, 84 + k * 3))
+    d.style("".join(css))
     return d
 
 
 # --------------------------------------------------------------- headers
 
 SECTIONS = [
-    ("sobre-mi", "MUNDO 1-1", "SOBRE MÍ", S.HEART, S.HEART_PAL, PHP),
-    ("stack", "MUNDO 1-2", "MI STACK TECNOLÓGICO", S.TOOLS, S.TOOLS_PAL, "#1e88e5"),
-    ("experiencia", "MUNDO 1-3", "EXPERIENCIA DESTACADA", S.TROPHY, S.TROPHY_PAL, "#e0a31a"),
+    ("camino", "MUNDO 1-1", "DE LA IDEA A LA REALIDAD", S.BULB, S.BULB_PAL, "#3d2f7a"),
+    ("logros", "MUNDO 1-2", "LOGROS DESBLOQUEADOS", S.TROPHY, S.TROPHY_PAL, LARAVEL),
+    ("sobre-mi", "MUNDO 1-3", "SOBRE MÍ", S.HEART, S.HEART_PAL, PHP),
+    ("stack", "MUNDO 1-4", "CON QUÉ LA CONSTRUYO", S.TOOLS, S.TOOLS_PAL, "#1e88e5"),
 ]
 
 
@@ -567,7 +705,7 @@ def header(theme, world, title, icon, pal, accent):
     badge(L, 0, 3, 24, accent)
     iw, ih = max(len(r) for r in icon), len(icon)
     L.sprite((24 - iw) // 2, 3 + (24 - ih) // 2, icon, pal)
-    draw_text(L, 31, 6, world, t["php"] if accent == PHP else accent if theme == "dark" else darken(accent, .25), "small")
+    draw_text(L, 31, 6, world, lighten(accent, .45) if theme == "dark" else darken(accent, .15), "small")
     tw = draw_text(L, 31, 15, title, t["text"], "big")
     x0 = 31 + tw + 6
     for x in range(x0, w - 8):
@@ -789,18 +927,18 @@ def auto_check():
 def footer(theme):
     night = theme == "dark"
     t = THEMES[theme]
-    H = 58
+    H = 66
     rng = random.Random(7)
-    d = Doc(W, H, "¡Gracias por jugar! ¿Continuar? Agendar reunión",
-            "El elePHPant camina por el pasto de izquierda a derecha.")
+    d = Doc(W, H, "¿Tenés una idea? Insertá tu idea para continuar",
+            "El elePHPant camina por el pasto llevando una lamparita encendida.")
     L = d.layer()
     pal = SKIES[theme]
-    sky(L, pal[2:], 48)
+    sky(L, pal[2:], 56)
     css = []
     if night:
         tw = d.layer("tw1")
         for i in range(30):
-            x, y = rng.randint(1, W - 2), rng.randint(1, 38)
+            x, y = rng.randint(1, W - 2), rng.randint(1, 40)
             (tw if i % 2 else L).set(x, y, rng.choice(["#ffffff", "#fff1b8", "#b8dcff"]))
         css.append(".tw1{animation:tw 3s steps(1) infinite}@keyframes tw{50%{opacity:.15}}")
     else:
@@ -808,31 +946,32 @@ def footer(theme):
         L.sprite(236, 12, S.CLOUD, {"w": "#ffffff", "s": "#d7ecff"})
     # ground
     g1, g2, d1, d2 = ("#3fa46a", "#2c7a4e", "#4a3024", "#3a241b") if night else ("#6fd08c", "#43a863", "#8a5a3c", "#6e4630")
-    L.rect(0, 48, W, 10, d1)
-    L.hline(0, 48, W, g1)
-    L.hline(0, 49, W, g2)
+    L.rect(0, 56, W, 10, d1)
+    L.hline(0, 56, W, g1)
+    L.hline(0, 57, W, g2)
     for x in range(0, W, 5):
-        L.set(x + rng.randint(0, 2), 47, g1)
-        L.set(rng.randint(0, W), 52 + rng.randint(0, 5), d2)
+        L.set(x + rng.randint(0, 2), 55, g1)
+        L.set(rng.randint(0, W), 60 + rng.randint(0, 5), d2)
     for x in range(3, W, 23):
-        L.sprite(x, 44, ["#.#", "###"], {"#": g1})
+        L.sprite(x, 52, ["#.#", "###"], {"#": g1})
     # text
-    msg = "¡GRACIAS POR JUGAR!"
+    msg = "¿TENÉS UNA IDEA?"
     mw = text_width(msg, "big")
-    fancy_text(L, (W - mw) // 2, 5, msg, 1,
+    fancy_text(L, (W - mw) // 2, 7, msg, 1,
                bands=["#ffffff", "#ffd9d4", "#ff8f84", LARAVEL], depth_c="#8d130c", outline=INK,
                ring=PHP if night else "#ffffff", depth=1)
     cta = d.layer("cta")
-    s = "¿CONTINUAR? ▶ AGENDAR REUNIÓN"
+    s = "▶ INSERTÁ TU IDEA PARA CONTINUAR ◀"
     sw = text_width(s, "small")
-    draw_text(cta, (W - sw) // 2 + 1, 19, s, INK if night else "#ffffff", "small")
-    draw_text(cta, (W - sw) // 2, 18, s, "#fff4c2" if night else "#1f2440", "small")
+    draw_text(cta, (W - sw) // 2 + 1, 22, s, INK if night else "#ffffff", "small")
+    draw_text(cta, (W - sw) // 2, 21, s, "#fff4c2" if night else "#1f2440", "small")
     css.append(".cta{animation:cta 1.2s steps(1) infinite}@keyframes cta{70%{opacity:1}71%,100%{opacity:.25}}")
     # walking elephant
     walk = d.layer("walk")
     for f in (0, 1):
         fr = d.layer("wf%d" % f)
-        fr.sprite(-30, 30, S.ELEPHANT[f], S.ELEPHANT_PAL)
+        fr.sprite(-30, 38, S.ELEPHANT[f], S.ELEPHANT_PAL)
+        fr.sprite(-30 + 19, 29 + f, S.BULB_SMALL, {"o": INK, "y": "#ffd84d", "Y": "#fff4b0", "g": "#b8c2d0", "G": "#6f7b8e"})
     del walk
     css.append(".wf0,.wf1{animation:walk 16s steps(320) infinite}"
                "@keyframes walk{0%{transform:translateX(0)}100%{transform:translateX(320px)}}"
@@ -889,8 +1028,9 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     for theme in THEMES:
         save("hero-%s.svg" % theme, hero(theme))
-        for i, (key, label, value, colour, icon) in enumerate(BUTTONS):
-            save("btn-%s-%s.svg" % (key, theme), button(theme, label, value, colour, icon, i == 0))
+        for key, label, value, colour, icon in BUTTONS:
+            save("btn-%s-%s.svg" % (key, theme), button(theme, label, value, colour, icon))
+        save("camino-%s.svg" % theme, camino(theme))
         for key, world, title, icon, pal, accent in SECTIONS:
             save("title-%s-%s.svg" % (key, theme), header(theme, world, title, icon, pal, accent))
         save("profile-%s.svg" % theme, profile(theme))
@@ -902,6 +1042,7 @@ def main():
                                   ("liderazgo", S.FLAG, S.FLAG_PAL, "-.6s"),
                                   ("clean-code", S.BRACES, S.BRACES_PAL, "-1.2s")):
         save("perk-%s.svg" % key, perk(icon, pal, delay))
+    save("btn-idea.svg", idea_button())
     site_data()
     print("assets written to", OUT)
 
